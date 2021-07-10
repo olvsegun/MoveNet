@@ -11,6 +11,16 @@ interpreter.allocate_tensors()
 
 # Draw Keypoints
 def draw_keypoints(frame, keypoints, conf_thresh):
+    """
+    This function draws circles on the keypoints/landmarks
+    on the image.
+    Parameters:
+        Frame: The image to draw keypoints on
+        keypoints: The coordinates of the landmarks normalised
+        conf_thresh: the confidence probablility required to draw
+    Output:
+        cirsles drawn over landmarks on image
+    """
     h, w, _ = frame.shape
     shaped = np.squeeze(np.multiply(keypoints, [h, w, 1]))
     for landmark in shaped:
@@ -42,6 +52,17 @@ edges = {
     (14, 16): 'c'
 }
 def draw_connections(frame, keypoints, edges, conf_thresh=0.4):
+    """
+    This function draws between keypoints/landmarks
+    on the image.
+    Parameters:
+        Frame: The image to draw keypoints on
+        keypoints: The coordinates of the landmarks normalised
+        edges: (dict) Possible connection pairs between images
+        conf_thresh: the confidence probablility required to draw
+    Output:
+        line drawn connecting images.
+    """
     h, w, _ = frame.shape
     shaped = np.squeeze(np.multiply(keypoints, [h, w, 1]))
     for edge, color in edges.items():
